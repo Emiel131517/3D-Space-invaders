@@ -8,16 +8,15 @@ public class Piggy : MonoBehaviour
     private float speed = 1;
     void Start()
     {
-        
-    }
 
-    
+    }
     void Update()
     {
-        transform.position += transform.forward * -speed * Time.deltaTime;
+        transform.position += Vector3.up * Time.deltaTime * -speed;
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log("triggerd");
         SceneManager.LoadScene("Endscreen");
     }
 }

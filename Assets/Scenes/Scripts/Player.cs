@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5;
-    public float score = 0;
+    public static float score = 0;
     void Start()
     {
         
