@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5;
+    private int booster = 100;
     public static float score = 0;
     void Start()
     {
@@ -43,5 +44,12 @@ public class Player : MonoBehaviour
                 score++;
             }
         }
+    }
+    void LateUpdate()
+    {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 }
