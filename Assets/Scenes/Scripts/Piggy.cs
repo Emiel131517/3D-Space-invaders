@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Piggy : MonoBehaviour
 {
-    private float speed = 1;
+    private float speed = 0.5f;
     void Start()
     {
 
