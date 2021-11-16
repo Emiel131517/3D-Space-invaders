@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Ufo : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5;
     private int booster = 100;
+    private GameObject bullet;
+    private Timer timer;
+    private float shootCooldown = 0.25f;
+
     public static float score = 0;
     void Start()
     {
-        
+        bullet = GameObject.Find("bullet");
+        timer = new Timer();
+        timer.StartTimer();
     }
 
     // Update is called once per frame
@@ -19,7 +25,11 @@ public class Player : MonoBehaviour
         Move();
         if (Input.GetKey(KeyCode.Space))
         {
-            Shoot();
+            if (timer.CurrentTimerTime() >= shootCooldown)
+            {
+                timer.ResetTimer();
+                Shoot();
+            }
         }
     }
     private void Move()
@@ -35,15 +45,7 @@ public class Player : MonoBehaviour
     }
     private void Shoot()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.up, out hit, 15))
-        {
-            if (hit.transform.CompareTag("Piggy"))
-            {
-                Destroy(hit.transform.gameObject);
-                score++;
-            }
-        }
+        Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
     }
     void LateUpdate()
     {

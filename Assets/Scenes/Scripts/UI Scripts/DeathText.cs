@@ -15,6 +15,6 @@ public class DeathText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        deathText.text = "You lost! your score was: " + Player.score;
+        deathText.text = "You lost! your score was: " + Ufo.score;
     }
 }

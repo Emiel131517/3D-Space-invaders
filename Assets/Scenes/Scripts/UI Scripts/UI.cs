@@ -14,6 +14,6 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score.text = "Score: " + Player.score;
+        score.text = "Score: " + Ufo.score;
     }
 }

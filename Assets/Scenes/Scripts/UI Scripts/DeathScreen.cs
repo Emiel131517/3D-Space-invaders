@@ -8,11 +8,11 @@ public class DeathScreen : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene("Game");
-        Player.score = 0;
+        Ufo.score = 0;
     }
     public void MainMenu()
     {
         SceneManager.LoadScene("StartScreen");
-        Player.score = 0;
+        Ufo.score = 0;
     }
 }
