@@ -5,18 +5,18 @@ using UnityEngine;
 public class Ufo : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5;
+    private float moveSpeed = 5;
     private int booster = 100;
-    private GameObject bullet;
-    private Timer timer;
+    public GameObject bullet;
+    private Timer shootTimer;
+    private Timer boostTimer;
     private float shootCooldown = 0.25f;
 
     public static float score = 0;
     void Start()
     {
-        bullet = GameObject.Find("bullet");
-        timer = new Timer();
-        timer.StartTimer();
+        shootTimer.StartTimer();
+        boostTimer.StartTimer();
     }
 
     // Update is called once per frame
@@ -25,10 +25,10 @@ public class Ufo : MonoBehaviour
         Move();
         if (Input.GetKey(KeyCode.Space))
         {
-            if (timer.CurrentTimerTime() >= shootCooldown)
+            if (shootTimer.CurrentTimerTime() >= shootCooldown)
             {
-                timer.ResetTimer();
                 Shoot();
+                shootTimer.ResetTimer();
             }
         }
     }
@@ -36,11 +36,21 @@ public class Ufo : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * speed * Time.deltaTime;
+            transform.position += transform.right * moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += transform.right * -speed * Time.deltaTime;
+            transform.position += transform.right * -moveSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && booster > 0)
+        {
+            moveSpeed = 10;
+            booster--;
+        }
+        else
+        {
+            moveSpeed = 5;
+            booster++;
         }
     }
     private void Shoot()

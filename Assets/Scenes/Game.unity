@@ -211,49 +211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3329629734292226288, guid: bb48fa62b4a8b404cb4c986310b8fbb2,
     type: 3}
---- !u!1 &640741977
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 640741979}
-  - component: {fileID: 640741978}
-  m_Layer: 0
-  m_Name: Updater
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &640741978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640741977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe304f624fb019c49a6215ddea29b683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &640741979
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640741977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.79, y: 4.586669, z: -10.724}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &648599413
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7c5cddf729efb46ba9c93a9178d53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  moveSpeed: 5
+  bullet: {fileID: 1828635569326157214, guid: 5749b7006f06aa6498ecdba4ece0ab4b, type: 3}
 --- !u!65 &1663825822
 BoxCollider:
   m_ObjectHideFlags: 0
