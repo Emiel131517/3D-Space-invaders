@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Ufo : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 5;
-    private int booster = 100;
+    //shoot
     public GameObject bullet;
     private Timer shootTimer;
-    private Timer boostTimer;
     private float shootCooldown = 0.25f;
-
+    //movement
+    private float rotationSpeed = 0.5f;
+    private float moveSpeed = 5;
+    //booster
+    private BoosterBar boosterBar;
+    public float booster = 100;
+    private float boosterLoss = 50;
+    private float boosterGain = 30;
+    //score
     public static float score = 0;
     void Start()
-    {
+    {        
+        boosterBar = GameObject.Find("BoosterBar").GetComponent<BoosterBar>();
+        shootTimer = new Timer();
         shootTimer.StartTimer();
-        boostTimer.StartTimer();
+        boosterBar.SetMaxBooster(booster);
     }
 
     // Update is called once per frame
@@ -34,23 +41,30 @@ public class Ufo : MonoBehaviour
     }
     private void Move()
     {
+        boosterBar.SetBooster(booster);
+        transform.Rotate(0, rotationSpeed, 0);
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right * moveSpeed * Time.deltaTime;
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += transform.right * -moveSpeed * Time.deltaTime;
+            transform.Translate(Vector3.right * -moveSpeed * Time.deltaTime, Space.World);
         }
         if (Input.GetKey(KeyCode.LeftShift) && booster > 0)
         {
             moveSpeed = 10;
-            booster--;
+            booster -= boosterLoss * Time.deltaTime;
+            rotationSpeed = 1;
         }
         else
         {
             moveSpeed = 5;
-            booster++;
+            if (booster <= 100)
+            {
+                booster += boosterGain * Time.deltaTime;
+            }   
+            rotationSpeed = 0.5f;
         }
     }
     private void Shoot()

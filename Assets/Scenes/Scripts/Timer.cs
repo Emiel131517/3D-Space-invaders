@@ -30,10 +30,7 @@ public class Timer
     //if the timer is active add the time to the time variable
     private void Update()
     {
-       if (timerIsActive)
-        {
-            time += 1 * Time.deltaTime;
-        }
+        time += 1 * Time.deltaTime;
     }
     //start the timer
     public void StartTimer()
@@ -41,14 +38,16 @@ public class Timer
         if (timerIsActive == false)
         {
             timerIsActive = true;
+            updater = GameObject.Find("Updater").GetComponent<Updater>();
         }
     }
     //stop the timer
-    public void StopTimer()
+    public void PauseTimer()
     {
         if (timerIsActive == true)
         {
             timerIsActive = false;
+            updater = null;
         }
     }
     //reset the value stored in the timer variable
