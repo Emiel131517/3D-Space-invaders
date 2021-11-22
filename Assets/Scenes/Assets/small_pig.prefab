@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3834187167559491877}
   - component: {fileID: 506194578681758090}
   - component: {fileID: 831181936630930764}
-  - component: {fileID: 1340015678641204085}
+  - component: {fileID: 3365847458144646552}
   m_Layer: 0
   m_Name: small_pig
   m_TagString: Piggy
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776a16d80d2c2d14db094d27609849df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1340015678641204085
+--- !u!54 &3365847458144646552
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

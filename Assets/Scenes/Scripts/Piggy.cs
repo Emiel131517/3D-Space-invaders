@@ -16,7 +16,6 @@ public class Piggy : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("triggerd");
         SceneManager.LoadScene("Endscreen");
     }
 }

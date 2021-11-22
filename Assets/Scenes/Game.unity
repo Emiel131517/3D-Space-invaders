@@ -912,7 +912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -610.36, y: -143.8}
+  m_AnchoredPosition: {x: -631.7, y: -174.6}
   m_SizeDelta: {x: 46.84191, y: 221.51685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495802507
@@ -1444,7 +1444,7 @@ PrefabInstance:
     - target: {fileID: 7220985599022082661, guid: 6dafc46758fded646afcc9a40fd9cd8e,
         type: 3}
       propertyPath: m_Name
-      value: space_ship
+      value: Ufo
       objectReference: {fileID: 0}
     - target: {fileID: 7220985599022082661, guid: 6dafc46758fded646afcc9a40fd9cd8e,
         type: 3}

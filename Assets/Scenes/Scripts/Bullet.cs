@@ -22,9 +22,11 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.CompareTag("Piggy");
-        Destroy(gameObject);
-        Destroy(collision.gameObject);
-        Ufo.score++;
+        if (collision.gameObject.CompareTag("Piggy"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            Ufo.score++;
+        }
     }
 }
