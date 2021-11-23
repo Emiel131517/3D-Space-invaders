@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
 {
     private float speed = 7;
     private Vector2 screenBounds;
+    private Piggy piggy;
+    private LargePiggy largePiggy;
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2 (Screen.width, Screen.height));
@@ -18,15 +20,6 @@ public class Bullet : MonoBehaviour
         if (transform.position.y > screenBounds.y)
         {
             Destroy(gameObject);
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Piggy"))
-        {
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
-            Ufo.score++;
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     private float respawnTime = 7.5f;
-    public GameObject enemyPrefab;
+    public GameObject smallPiggy;
+    public GameObject largePiggy;
     void Start()
     {
         StartCoroutine(cooldownSpawner());
@@ -18,7 +18,15 @@ public class EnemySpawner : MonoBehaviour
 
     public void spawnEnemy()
     {
-        Instantiate(enemyPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        int random = Random.Range(0, 6);
+        if (random >= 1)
+        {
+            Instantiate(smallPiggy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        }
+        if (random <= 0)
+        {
+            Instantiate(largePiggy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        }
     }
     IEnumerator cooldownSpawner()
     {
