@@ -14,17 +14,15 @@ public class Timer
     public Timer()
     {
         timerList = new List<Timer>();
-        GameObject newUpdater = new GameObject("Updater");
-        newUpdater.AddComponent<Updater>();
-        updater = GameObject.Find("Updater").GetComponent<Updater>();
 
+        updater = GameObject.Find("Updater").GetComponent<Updater>();
+        if (updater == null)
+        {
+            Debug.LogError("No updater found!");
+        }
         if (updater != null)
         {
             updater.updateCaller += Update;
-        }
-        if (updater == null)
-        {
-            Debug.LogError("No Updater found");
         }
     }
     //if the timer is active add the time to the time variable
@@ -63,6 +61,18 @@ public class Timer
     //get the time that is stored in the time variable
     public float CurrentTimerTime()
     {
+        return time;
+    }
+    //adds time to the timer
+    public float AddTimeToTimer(float timeAmount)
+    {
+        time += timeAmount;
+        return time;
+    }
+    //remove time from the timer
+    public float RemoveTimeFromTimer(float timeAmount)
+    {
+        time -= timeAmount;
         return time;
     }
     public void AddTimerToList(Timer timer)

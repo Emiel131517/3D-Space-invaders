@@ -25,8 +25,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc64493ab41289b469ea7582b09f4e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 2
   enemyPrefab: {fileID: 3083504627141339114, guid: dbecd51ac2635474fa4283a13ffb845c,
     type: 3}
+  hamDrop: {fileID: 2652400094147563034, guid: 779277c3d4f5fb34c9b8fa5b73fc54bc, type: 3}
 --- !u!1001 &8460761447821713049
 PrefabInstance:
   m_ObjectHideFlags: 0

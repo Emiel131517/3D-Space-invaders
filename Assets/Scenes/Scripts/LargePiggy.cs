@@ -9,6 +9,7 @@ public class LargePiggy : MonoBehaviour
     private float respawnTime = 5f;
     public int health = 2;
     public GameObject enemyPrefab;
+    public GameObject hamDrop;
     void Start()
     {
         StartCoroutine(cooldownSpawner());
@@ -42,7 +43,12 @@ public class LargePiggy : MonoBehaviour
             health--;
             if (health == 0)
             {
-                int random = Random.Range(0, 32);
+                //32 = 3.125% chance
+                int random = Random.Range(0, 1);
+                if (random == 0)
+                {
+                    Instantiate(hamDrop, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                }
                 Destroy(gameObject);
                 Ufo.score += 2;
             }

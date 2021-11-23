@@ -9,6 +9,7 @@ TagManager:
   - Ufo
   - LargePiggy
   - Bullet
+  - HamDrop
   layers:
   - Default
   - TransparentFX

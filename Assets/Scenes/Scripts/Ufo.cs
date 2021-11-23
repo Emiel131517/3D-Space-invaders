@@ -7,6 +7,7 @@ public class Ufo : MonoBehaviour
     //shoot
     public GameObject bullet;
     private Timer shootTimer;
+    Timer shootTimerPickup;
     private float shootCooldown = 0.25f;
     //movement
     private float rotationSpeed = 0.5f;
@@ -19,11 +20,16 @@ public class Ufo : MonoBehaviour
     //score
     public static float score = 0;
     void Start()
-    {        
+    {
+        GameObject newUpdater = new GameObject("Updater");
+        newUpdater.AddComponent<Updater>();
+
         boosterBar = GameObject.Find("BoosterBar").GetComponent<BoosterBar>();
+        boosterBar.SetMaxBooster(booster);
+
         shootTimer = new Timer();
         shootTimer.StartTimer();
-        boosterBar.SetMaxBooster(booster);
+        shootTimerPickup = new Timer();
     }
 
     // Update is called once per frame
@@ -77,5 +83,24 @@ public class Ufo : MonoBehaviour
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp01(pos.y);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("HamDrop"))
+        {
+            shootTimerPickup.ResetTimer();
+            shootTimerPickup.StartTimer();
+            if (shootTimerPickup.CurrentTimerTime() <= 10)
+            {
+                Destroy(other);
+                shootCooldown = 0.10f;
+            }
+            if (shootTimerPickup.CurrentTimerTime() > 10)
+            {
+                Destroy(other);
+                shootTimerPickup.ResetTimer();
+                shootCooldown = 0.25f;
+            }
+        }
     }
 }
