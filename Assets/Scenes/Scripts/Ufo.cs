@@ -19,6 +19,7 @@ public class Ufo : MonoBehaviour
     private float boosterGain = 30;
     //score
     public static float score = 0;
+    private bool test = false;
     void Start()
     {
         GameObject newUpdater = new GameObject("Updater");
@@ -29,12 +30,24 @@ public class Ufo : MonoBehaviour
 
         shootTimer = new Timer();
         shootTimer.StartTimer();
+
         shootTimerPickup = new Timer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (test == true)
+        {
+            shootTimerPickup.ResetTimer();
+            shootTimerPickup.StartTimer();
+            if (shootTimerPickup.time > 3f)
+            {
+                shootTimerPickup.StartTimer();
+                shootCooldown = 0.25f;
+                test = false;
+            }
+        }
         Move();
         if (Input.GetKey(KeyCode.Space))
         {
@@ -88,19 +101,9 @@ public class Ufo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("HamDrop"))
         {
-            shootTimerPickup.ResetTimer();
-            shootTimerPickup.StartTimer();
-            if (shootTimerPickup.CurrentTimerTime() <= 10)
-            {
-                Destroy(other);
-                shootCooldown = 0.10f;
-            }
-            if (shootTimerPickup.CurrentTimerTime() > 10)
-            {
-                Destroy(other);
-                shootTimerPickup.ResetTimer();
-                shootCooldown = 0.25f;
-            }
+            shootCooldown = 0.15f;
+            test = true;
+            Destroy(other);
         }
     }
 }

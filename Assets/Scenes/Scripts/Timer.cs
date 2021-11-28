@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Timer
 {
-    private float time;
+    private float timerTime;
+    public float time { get { return timerTime; } }
     public bool timerIsActive = false;
     private List<Timer> timerList;
     //getting the updater to use the update function
@@ -28,7 +29,7 @@ public class Timer
     //if the timer is active add the time to the time variable
     private void Update()
     {
-        time += 1 * Time.deltaTime;
+        timerTime += 1 * Time.deltaTime;
     }
     //start the timer
     public void StartTimer()
@@ -51,7 +52,7 @@ public class Timer
     //reset the value stored in the timer variable
     public void ResetTimer()
     {
-        time = 0f;
+        timerTime = 0f;
     }
     //get if the timer is active or not
     public bool GetTimerActive()
@@ -61,19 +62,19 @@ public class Timer
     //get the time that is stored in the time variable
     public float CurrentTimerTime()
     {
-        return time;
+        return timerTime;
     }
     //adds time to the timer
     public float AddTimeToTimer(float timeAmount)
     {
-        time += timeAmount;
-        return time;
+        timerTime += timeAmount;
+        return timerTime;
     }
     //remove time from the timer
     public float RemoveTimeFromTimer(float timeAmount)
     {
-        time -= timeAmount;
-        return time;
+        timerTime -= timeAmount;
+        return timerTime;
     }
     public void AddTimerToList(Timer timer)
     {   
