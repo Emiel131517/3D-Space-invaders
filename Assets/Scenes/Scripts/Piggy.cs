@@ -3,33 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Piggy : MonoBehaviour
+public class Piggy : Enemy
 {
-    private float speed = 0.5f;
-    public int health = 1;
-    void Start()
+    private void Start()
     {
-
+        SetEnemyHealth(1);
     }
-    void Update()
+    private void Update()
     {
-        transform.Translate(Vector3.up * Time.deltaTime * -speed, Space.Self);
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        SceneManager.LoadScene("Endscreen");
+        MoveDown(0.5f);
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ufo"))
+        {
+            SceneManager.LoadScene("Endscreen");
+        }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            health--;
-            if (health == 0)
+            Damage(1);
+            if (health <= 0)
             {
                 Destroy(gameObject);
                 Ufo.score++;
             }
-            Destroy(collision.gameObject);
         }
+        Destroy(collision.gameObject);
     }
 }

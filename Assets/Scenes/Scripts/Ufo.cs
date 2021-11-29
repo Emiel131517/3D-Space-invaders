@@ -5,7 +5,8 @@ using UnityEngine;
 public class Ufo : MonoBehaviour
 {
     //shoot
-    public GameObject bullet;
+    public GameObject forkBullet;
+    public GameObject knifeBullet;
     private Timer shootTimer;
     Timer shootTimerPickup;
     private float shootCooldown = 0.25f;
@@ -19,7 +20,7 @@ public class Ufo : MonoBehaviour
     private float boosterGain = 30;
     //score
     public static float score = 0;
-    private bool test = false;
+    public bool test = false;
     void Start()
     {
         GameObject newUpdater = new GameObject("Updater");
@@ -30,24 +31,29 @@ public class Ufo : MonoBehaviour
 
         shootTimer = new Timer();
         shootTimer.StartTimer();
-
-        shootTimerPickup = new Timer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(test);
         if (test == true)
         {
-            shootTimerPickup.ResetTimer();
+            shootTimerPickup = new Timer();
             shootTimerPickup.StartTimer();
-            if (shootTimerPickup.time > 3f)
+            if (shootTimerPickup.CurrentTimerTime() >= 3f)
             {
-                shootTimerPickup.StartTimer();
                 shootCooldown = 0.25f;
                 test = false;
+                shootTimerPickup.PauseTimer();
+                shootTimerPickup.ResetTimer();
+            }
+            else
+            {
+                shootCooldown = 0.1f;
             }
         }
+
         Move();
         if (Input.GetKey(KeyCode.Space))
         {
@@ -88,7 +94,15 @@ public class Ufo : MonoBehaviour
     }
     private void Shoot()
     {
-        Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        int random = Random.Range(0, 2);
+        if (random <= 0)
+        {
+            Instantiate(forkBullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        }
+        if (random >= 1)
+        {
+            Instantiate(knifeBullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        }
     }
     void LateUpdate()
     {
@@ -99,9 +113,8 @@ public class Ufo : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("HamDrop"))
+        if (other.CompareTag("HamDrop"))
         {
-            shootCooldown = 0.15f;
             test = true;
             Destroy(other);
         }

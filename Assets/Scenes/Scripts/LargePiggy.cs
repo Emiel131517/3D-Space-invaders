@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LargePiggy : MonoBehaviour
+public class LargePiggy : Enemy
 {
-    private float moveSpeed = 0.3f;
     private float respawnTime = 5f;
-    public int health = 2;
     public GameObject enemyPrefab;
     public GameObject hamDrop;
     void Start()
     {
+        SetEnemyHealth(2);
         StartCoroutine(cooldownSpawner());
     }
 
     void Update()
     {
-        transform.Translate(Vector3.up * Time.deltaTime * -moveSpeed, Space.Self);
+        MoveDown(0.3f);
     }
     public void spawnEnemy()
     {
@@ -32,15 +31,15 @@ public class LargePiggy : MonoBehaviour
         }
 
     }
-    void OnTriggerEnter(Collider other)
-    {
-        SceneManager.LoadScene("Endscreen");
-    }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ufo"))
+        {
+            SceneManager.LoadScene("Endscreen");
+        }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            health--;
+            Damage(1);
             if (health == 0)
             {
                 //32 = 3.125% chance

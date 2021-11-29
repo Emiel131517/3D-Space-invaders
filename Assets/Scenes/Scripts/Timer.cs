@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Timer
 {
-    private float timerTime;
-    public float time { get { return timerTime; } }
+    private float timerTime = 0;
     public bool timerIsActive = false;
-    private List<Timer> timerList;
+/*    private List<Timer> timerList;*/
     //getting the updater to use the update function
     private Updater updater;
 
     //getting the update function
     public Timer()
     {
-        timerList = new List<Timer>();
+        //timerList = new List<Timer>();
 
         updater = GameObject.Find("Updater").GetComponent<Updater>();
         if (updater == null)
@@ -76,7 +75,7 @@ public class Timer
         timerTime -= timeAmount;
         return timerTime;
     }
-    public void AddTimerToList(Timer timer)
+/*    public void AddTimerToList(Timer timer)
     {   
         timerList.Add(timer);
     }
@@ -87,5 +86,5 @@ public class Timer
     public List<Timer> GetTimerList()
     {
         return timerList;
-    }
+    }*/
 }

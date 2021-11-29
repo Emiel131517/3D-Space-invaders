@@ -6,8 +6,6 @@ public class Bullet : MonoBehaviour
 {
     private float speed = 7;
     private Vector2 screenBounds;
-    private Piggy piggy;
-    private LargePiggy largePiggy;
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2 (Screen.width, Screen.height));

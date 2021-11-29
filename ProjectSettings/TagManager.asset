@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Piggy
   - Endline
   - Ufo
-  - LargePiggy
   - Bullet
   - HamDrop
+  - Undefined
+  - Enemy
   layers:
   - Default
   - TransparentFX
