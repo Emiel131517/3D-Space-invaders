@@ -11,6 +11,7 @@ public class LargePiggy : Enemy
     void Start()
     {
         SetEnemyHealth(2);
+        SetScoreWorth(2);
         StartCoroutine(cooldownSpawner());
     }
 
@@ -40,18 +41,18 @@ public class LargePiggy : Enemy
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Damage(1);
-            if (health == 0)
+            if (health <= 0)
             {
+                Destroy(gameObject);
+                Ufo.score += score;
                 //32 = 3.125% chance
                 int random = Random.Range(0, 1);
                 if (random == 0)
                 {
                     Instantiate(hamDrop, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 }
-                Destroy(gameObject);
-                Ufo.score += 2;
             }
             Destroy(collision.gameObject);
-        }          
+        }
     }
 }

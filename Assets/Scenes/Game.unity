@@ -1009,12 +1009,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7c5cddf729efb46ba9c93a9178d53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forkBullet: {fileID: 7075619367055351922, guid: 5aafcf61a8b9e684c8b1cf458f0ab78c,
+  forkBullet: {fileID: 4201997401445274215, guid: 5aafcf61a8b9e684c8b1cf458f0ab78c,
     type: 3}
-  knifeBullet: {fileID: 2847870626184593254, guid: 76b3995a92ddd7f46b378eb45cf35104,
+  knifeBullet: {fileID: 1772166980414958711, guid: 76b3995a92ddd7f46b378eb45cf35104,
     type: 3}
   booster: 100
-  test: 0
 --- !u!65 &1663825822
 BoxCollider:
   m_ObjectHideFlags: 0

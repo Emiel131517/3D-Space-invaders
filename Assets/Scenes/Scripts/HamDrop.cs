@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class HamDrop : MonoBehaviour
 {
-    private float moveSpeed = 0.5f;
-
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    void Update()
-    {
-        transform.Translate(Vector3.up * Time.deltaTime * -moveSpeed, Space.Self);
+        if (other.CompareTag("Endline"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Ufo"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

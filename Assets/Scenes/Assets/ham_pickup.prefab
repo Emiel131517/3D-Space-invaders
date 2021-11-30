@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 19326303671211731}
   - component: {fileID: 4029440456263457142}
   - component: {fileID: 1157290925517123004}
+  - component: {fileID: -5508749290733341698}
   - component: {fileID: 928145702790861567}
-  - component: {fileID: 6822793013070236133}
+  - component: {fileID: -7322370233684935258}
   m_Layer: 0
   m_Name: ham_pickup
   m_TagString: HamDrop
@@ -83,20 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &928145702790861567
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796989280392350825}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.575493, y: 0.611971, z: 0.49691945}
-  m_Center: {x: -0.066208564, y: 0.039032206, z: -0.056338273}
---- !u!54 &6822793013070236133
+--- !u!54 &-5508749290733341698
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,5 +98,31 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!65 &928145702790861567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796989280392350825}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.575493, y: 0.611971, z: 0.49691945}
+  m_Center: {x: -0.066208564, y: 0.039032206, z: -0.056338273}
+--- !u!114 &-7322370233684935258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796989280392350825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efed04863689a22408844f1cb6cd61d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPickupIsActive: 0

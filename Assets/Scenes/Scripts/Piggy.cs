@@ -8,6 +8,7 @@ public class Piggy : Enemy
     private void Start()
     {
         SetEnemyHealth(1);
+        SetScoreWorth(1);
     }
     private void Update()
     {
@@ -22,12 +23,12 @@ public class Piggy : Enemy
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Damage(1);
+            Ufo.score += score;
             if (health <= 0)
             {
                 Destroy(gameObject);
-                Ufo.score++;
             }
+            Destroy(collision.gameObject);
         }
-        Destroy(collision.gameObject);
     }
 }

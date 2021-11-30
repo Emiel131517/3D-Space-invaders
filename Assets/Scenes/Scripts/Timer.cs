@@ -28,7 +28,10 @@ public class Timer
     //if the timer is active add the time to the time variable
     private void Update()
     {
-        timerTime += 1 * Time.deltaTime;
+        if (timerIsActive == true)
+        {
+            timerTime += 1 * Time.deltaTime;
+        }
     }
     //start the timer
     public void StartTimer()
@@ -75,6 +78,14 @@ public class Timer
         timerTime -= timeAmount;
         return timerTime;
     }
+    //reset timer and stop the timer
+    public void StopAndResetTimer()
+    {
+        timerIsActive = false;
+        updater = null;
+        timerTime = 0;
+    }
+
 /*    public void AddTimerToList(Timer timer)
     {   
         timerList.Add(timer);

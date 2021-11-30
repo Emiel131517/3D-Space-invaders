@@ -8,8 +8,7 @@ public class Ufo : MonoBehaviour
     public GameObject forkBullet;
     public GameObject knifeBullet;
     private Timer shootTimer;
-    Timer shootTimerPickup;
-    private float shootCooldown = 0.25f;
+    private float shootCooldown = 0.35f;
     //movement
     private float rotationSpeed = 0.5f;
     private float moveSpeed = 5;
@@ -20,7 +19,7 @@ public class Ufo : MonoBehaviour
     private float boosterGain = 30;
     //score
     public static float score = 0;
-    public bool test = false;
+
     void Start()
     {
         GameObject newUpdater = new GameObject("Updater");
@@ -36,24 +35,7 @@ public class Ufo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(test);
-        if (test == true)
-        {
-            shootTimerPickup = new Timer();
-            shootTimerPickup.StartTimer();
-            if (shootTimerPickup.CurrentTimerTime() >= 3f)
-            {
-                shootCooldown = 0.25f;
-                test = false;
-                shootTimerPickup.PauseTimer();
-                shootTimerPickup.ResetTimer();
-            }
-            else
-            {
-                shootCooldown = 0.1f;
-            }
-        }
-
+        Debug.Log(shootCooldown);
         Move();
         if (Input.GetKey(KeyCode.Space))
         {
@@ -115,8 +97,8 @@ public class Ufo : MonoBehaviour
     {
         if (other.CompareTag("HamDrop"))
         {
-            test = true;
-            Destroy(other);
+            shootCooldown -= 0.01f;
+            score += 2;
         }
     }
 }
