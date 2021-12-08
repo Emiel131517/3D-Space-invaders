@@ -1,21 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     protected int health;
-    protected int score;
-    //set the health of the enemy
-    public void SetEnemyHealth(int health)
-    {
-        this.health = health;
-    }
-    public void SetScoreWorth(int scoreWorth)
-    {
-        score = scoreWorth;
-    }
-    //damage the player
+    protected int scoreWorth;
     public void Damage(int damage)
     {
         health -= damage;
@@ -40,17 +31,11 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(Vector3.right * Time.deltaTime * -speed, Space.Self);
     }
-/*    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Endline") && other.GetComponent<Ufo>())
         {
-            Destroy(other.gameObject);
-            Damage(1);
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-                Ufo.score += score;
-            }
+            SceneManager.LoadScene("EndScreen");
         }
-    }*/
+    }
 }

@@ -10,13 +10,18 @@ public class LargePiggy : Enemy
     public GameObject hamDrop;
     void Start()
     {
-        SetEnemyHealth(2);
-        SetScoreWorth(2);
+        health = 2;
+        scoreWorth = 2;
         StartCoroutine(cooldownSpawner());
     }
 
     void Update()
     {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            Ufo.score += scoreWorth;
+        }
         MoveDown(0.3f);
     }
     public void spawnEnemy()
@@ -32,27 +37,19 @@ public class LargePiggy : Enemy
         }
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnDestroy()
     {
-        if (collision.gameObject.CompareTag("Ufo"))
+        if (health <= 0)
         {
-            SceneManager.LoadScene("Endscreen");
-        }
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Damage(1);
-            if (health <= 0)
+            Destroy(gameObject);
+            Ufo.score += scoreWorth;
+            //32 = 3.125% chance
+                                    //6.25%
+            int random = Random.Range(0, 16);
+            if (random == 0)
             {
-                Destroy(gameObject);
-                Ufo.score += score;
-                //32 = 3.125% chance
-                int random = Random.Range(0, 1);
-                if (random == 0)
-                {
-                    Instantiate(hamDrop, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                }
+                Instantiate(hamDrop, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             }
-            Destroy(collision.gameObject);
         }
     }
 }
