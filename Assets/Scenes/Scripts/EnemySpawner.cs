@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private float respawnTime = 7.5f;
+    private int largePiggySpawnChance = 15;
+    private int oldScoreCheckTarget = 0;
+    private int newScoreCheckTarget = 50;
     public GameObject smallPiggy;
     public GameObject largePiggy;
     void Start()
@@ -13,12 +16,17 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
-        
+        if (Ufo.score > oldScoreCheckTarget && Ufo.score < newScoreCheckTarget)
+        {
+            respawnTime -= 0.125f;
+            oldScoreCheckTarget += 50;
+            newScoreCheckTarget += 50;
+        }
     }
 
     public void spawnEnemy()
     {
-        int random = Random.Range(0, 6);
+        int random = Random.Range(0, largePiggySpawnChance);
         if (random >= 1)
         {
             Instantiate(smallPiggy, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);

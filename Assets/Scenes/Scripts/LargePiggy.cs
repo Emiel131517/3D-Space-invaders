@@ -44,8 +44,8 @@ public class LargePiggy : Enemy
             Destroy(gameObject);
             Ufo.score += scoreWorth;
             //32 = 3.125% chance
-                                    //6.25%
-            int random = Random.Range(0, 16);
+                                    //12.5%
+            int random = Random.Range(0, 8);
             if (random == 0)
             {
                 Instantiate(hamDrop, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);

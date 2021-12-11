@@ -22,6 +22,9 @@ public class Ufo : MonoBehaviour
 
     void Start()
     {
+        GameObject newUpdater = new GameObject("Updater");
+        newUpdater.AddComponent<Updater>();
+
         boosterBar = GameObject.Find("BoosterBar").GetComponent<BoosterBar>();
         boosterBar.SetMaxBooster(booster);
 
