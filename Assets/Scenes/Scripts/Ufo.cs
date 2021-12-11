@@ -53,16 +53,25 @@ public class Ufo : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
+            rotationSpeed = 0.5f;
         }
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.right * -moveSpeed * Time.deltaTime, Space.World);
+            rotationSpeed = -0.5f;
         }
         if (Input.GetKey(KeyCode.LeftShift) && booster > 0)
         {
+            if (rotationSpeed == 0.5f)
+            {
+                rotationSpeed = 1;
+            }
+            if (rotationSpeed == -0.5f)
+            {
+                rotationSpeed = -1;
+            }
             moveSpeed = 10;
             booster -= boosterLoss * Time.deltaTime;
-            rotationSpeed = 1;
         }
         else
         {
@@ -70,8 +79,15 @@ public class Ufo : MonoBehaviour
             if (booster <= 100)
             {
                 booster += boosterGain * Time.deltaTime;
-            }   
-            rotationSpeed = 0.5f;
+            }
+            if (rotationSpeed == 1)
+            {
+                rotationSpeed = 0.5f;
+            }
+            if (rotationSpeed == -1)
+            {
+                rotationSpeed = -0.5f;
+            }
         }
     }
     private void Shoot()
